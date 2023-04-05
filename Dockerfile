@@ -1,9 +1,25 @@
-FROM node:alpine
+FROM node:alpine AS base
+
+RUN npm i -g pnpm
+
+FROM base AS dependencies
 
 WORKDIR /app
-COPY package.json .
-RUN npm install -g pnpm
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
-COPY . .
 
-CMD ["pnpm","start"]
+FROM base AS build
+
+WORKDIR /app
+COPY . .
+COPY --from=dependencies /app/node_modules ./node_modules
+RUN pnpm build
+RUN pnpm prune --prod
+
+FROM base AS deploy
+
+WORKDIR /app
+COPY --from=build /app/dist/ ./dist
+COPY --from=build /app/node_modules ./node_modules
+
+CMD ["node","dist/main.js"]
