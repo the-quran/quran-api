@@ -8,3 +8,13 @@ Continuous integration(CI), continuous delivery/deployment(CD) are DevOps practi
 - [Run Amazon Linux 2 as a virtual machine on premises](https://github.com/mehradi-github/ref-devops-flow#run-amazon-linux-2-as-a-virtual-machine-on-premises)
 - [Installing Docker](https://github.com/mehradi-github/ref-devops-flow#installing-docker)
 - [Installing docker-compose](https://github.com/mehradi-github/ref-graphql#installing-docker-compose)
+
+  - Build & run with docker:
+    ``` bash
+    docker build -t quran-api .
+    docker run -dp 3001:3001 quran-api
+    ```
+  - With docker-compose:
+    ```bash
+      docker-compose up -d --build
+    ```
