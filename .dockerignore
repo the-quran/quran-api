@@ -1,1 +1,9 @@
+.git
+.vscode
+.gitignore
+.prettierrc
+.eslintrc.js
 node_modules
+docker-compose.yml
+infra
+README.md
