@@ -1,5 +1,5 @@
 # The Quran API
-The Quran API is built with NestJS, Graphql, Docker, Docker Compose, Kubernetes, Prisma and PostgreSQL.
+The Quran API is built with NestJS, Graphql, Prisma, PostgreSQL, Docker and Kubernetes.
 
 
 ## CI/CD (DevOps)
