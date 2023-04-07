@@ -21,3 +21,14 @@ Continuous integration(CI), continuous delivery/deployment(CD) are DevOps practi
     ```bash
       docker-compose up -d --build
     ```
+- [Kubernetes](https://github.com/mehradi-github/ref-microservices-ticketing-auth#k8s-world)    
+  
+  ```bash
+    kubectl apply -f quran-api-depl.yaml
+    
+    kubectl rollout status deployment/quran-api-depl
+    kubectl rollout restart deployment/quran-api-depl
+  ```
+- [Managing Secrets using kubectl](https://github.com/mehradi-github/microservices-ticketing#managing-secrets-using-kubectl)
+- [Installing Skaffold](https://github.com/mehradi-github/microservices-ticketing#skaffold)
+- 
