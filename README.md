@@ -31,4 +31,8 @@ Continuous integration(CI), continuous delivery/deployment(CD) are DevOps practi
   ```
 - [Managing Secrets using kubectl](https://github.com/mehradi-github/microservices-ticketing#managing-secrets-using-kubectl)
 - [Installing Skaffold](https://github.com/mehradi-github/microservices-ticketing#skaffold)
+- Installing Mongo:
+    ```bash
+      pnpm i @nestjs/mongoose mongoose
+    ```
 
