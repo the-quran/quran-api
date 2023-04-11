@@ -8,6 +8,9 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { join } from 'path';
 import { QuranModule } from './quran/quran.module';
+import { ChapterModule } from './chapter/chapter.module';
+import { VerseModule } from './verse/verse.module';
+import { TranslationModule } from './translation/translation.module';
 
 @Module({
   imports: [
@@ -27,6 +30,9 @@ import { QuranModule } from './quran/quran.module';
     }),
     MongooseModule.forRoot(process.env.MONGO_DB_URL),
     QuranModule,
+    ChapterModule,
+    VerseModule,
+    TranslationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
