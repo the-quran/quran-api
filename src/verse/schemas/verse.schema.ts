@@ -1,18 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type QuranDocument = HydratedDocument<Quran>;
+export type VerseDocument = HydratedDocument<Verse>;
 
 @Schema()
-export class Translation {
-  @Prop()
-  text: string;
-  @Prop()
-  iso_code: string;
-}
-
-@Schema()
-export class Quran {
+export class Verse {
   @Prop()
   verse_id: number;
   @Prop()
@@ -35,8 +27,8 @@ export class Quran {
   juz: number;
   @Prop(String)
   text: string;
-  @Prop(String)
-  translation: Translation;
+  // @Prop(String)
+  // translation: Translation;
 }
 
-export const QuranSchema = SchemaFactory.createForClass(Quran);
+export const VerseSchema = SchemaFactory.createForClass(Verse);
