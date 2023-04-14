@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type TranslationDocument = HydratedDocument<Translation>;
+export type TranslationInfoDocument = HydratedDocument<TranslationInfo>;
 
 @Schema()
 export class Author {
@@ -12,7 +12,7 @@ export class Author {
 }
 
 @Schema()
-export class Translation {
+export class TranslationInfo {
   @Prop()
   _id: number;
   @Prop()
@@ -27,4 +27,5 @@ export class Translation {
   authors: Author[];
 }
 
-export const TranslationSchema = SchemaFactory.createForClass(Translation);
+export const TranslationInfoSchema =
+  SchemaFactory.createForClass(TranslationInfo);

@@ -4,9 +4,16 @@ import { HydratedDocument } from 'mongoose';
 export type VerseDocument = HydratedDocument<Verse>;
 
 @Schema()
+export class Translation {
+  @Prop()
+  _id: number;
+  @Prop()
+  text: string;
+}
+@Schema()
 export class Verse {
   @Prop()
-  verse_id: number;
+  _id: number;
   @Prop()
   verse: number;
   @Prop()
@@ -27,8 +34,8 @@ export class Verse {
   juz: number;
   @Prop(String)
   text: string;
-  // @Prop(String)
-  // translation: Translation;
+  @Prop(String)
+  translations: Translation[];
 }
 
 export const VerseSchema = SchemaFactory.createForClass(Verse);
