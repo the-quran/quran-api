@@ -6,21 +6,35 @@ export type ChapterDocument = HydratedDocument<Chapter>;
 @Schema()
 export class Chapter {
   @Prop({ required: true, index: true, unique: true, type: SchemaTypes.Number })
-  _id: number;
-  @Prop({ required: true, type: SchemaTypes.String })
+  id: number;
+  @Prop({ type: SchemaTypes.String })
   revelationPlace: string;
-  @Prop({ required: true, type: SchemaTypes.Number })
+  @Prop({ type: SchemaTypes.Number })
   revelationOrder: number;
-  @Prop({ required: true, type: SchemaTypes.Boolean })
+  @Prop({ type: SchemaTypes.Boolean })
   bismillahPre: boolean;
-  @Prop({ required: true, type: SchemaTypes.String })
+  @Prop({ type: SchemaTypes.String })
   nameSimple: string;
-  @Prop({ required: true, type: SchemaTypes.String })
+  @Prop({ type: SchemaTypes.String })
   nameComplex: string;
-  @Prop({ required: true, type: SchemaTypes.String })
+  @Prop({ type: SchemaTypes.String })
   nameArabic: string;
-  @Prop({ required: true, type: SchemaTypes.Number })
+  @Prop({ type: SchemaTypes.Number })
   versesCount: number;
+  @Prop({ type: [SchemaTypes.Number] })
+  pages: number[];
+  @Prop({
+    type: [
+      {
+        isoCode: { type: SchemaTypes.String },
+        name: { type: SchemaTypes.String },
+      },
+    ],
+  })
+  translatedName: {
+    isoCode: string;
+    name: string;
+  }[];
   // @Prop({
   //   type: [
   //     { id: { type: SchemaTypes.Number }, text: { type: SchemaTypes.String } },
