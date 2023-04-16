@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { TranslatedName } from './translatedName.entity';
+import { TranslatedName } from './translated-name.entity';
 
 @ObjectType()
 export class Chapter {
