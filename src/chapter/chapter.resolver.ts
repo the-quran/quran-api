@@ -9,7 +9,9 @@ export class ChapterResolver {
   constructor(private readonly chapterService: ChapterService) {}
 
   @Mutation(() => Chapter)
-  createChapter(@Args('createChapterInput') createChapterInput: CreateChapterInput) {
+  createChapter(
+    @Args('createChapterInput') createChapterInput: CreateChapterInput,
+  ) {
     return this.chapterService.create(createChapterInput);
   }
 
@@ -24,8 +26,13 @@ export class ChapterResolver {
   }
 
   @Mutation(() => Chapter)
-  updateChapter(@Args('updateChapterInput') updateChapterInput: UpdateChapterInput) {
-    return this.chapterService.update(updateChapterInput.id, updateChapterInput);
+  updateChapter(
+    @Args('updateChapterInput') updateChapterInput: UpdateChapterInput,
+  ) {
+    return this.chapterService.update(
+      updateChapterInput.id,
+      updateChapterInput,
+    );
   }
 
   @Mutation(() => Chapter)
