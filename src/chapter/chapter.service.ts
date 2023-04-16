@@ -10,23 +10,27 @@ export class ChapterService {
   constructor(
     @InjectModel(Chapter.name) private readonly chapterModel: Model<Chapter>,
   ) {}
-  create(createChapterInput: CreateChapterInput) {
-    return 'This action adds a new chapter';
+  async create(createChapterInput: CreateChapterInput): Promise<Chapter> {
+    return await this.chapterModel.create(createChapterInput);
   }
 
-  findAll() {
-    return `This action returns all chapter`;
+  async findAll(): Promise<Chapter[]> {
+    return await this.chapterModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} chapter`;
+  async findOne(id: number): Promise<Chapter> {
+    return await this.chapterModel.findOne({ _id: id }).exec();
   }
 
-  update(id: number, updateChapterInput: UpdateChapterInput) {
-    return `This action updates a #${id} chapter`;
+  async update(id: number, updateChapterInput: UpdateChapterInput) {
+    const filter = { _id: id };
+    const update = updateChapterInput;
+
+    return await this.chapterModel.findOneAndUpdate(filter, update).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} chapter`;
+  async remove(id: number) {
+    const filter = { _id: id };
+    return await this.chapterModel.findOneAndRemove(filter).exec();
   }
 }
