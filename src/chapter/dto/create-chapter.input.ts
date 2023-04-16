@@ -1,5 +1,5 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
-import { TranslatedName } from './create-translatedName.input';
+import { CreateTranslatedNameInput } from './create-translatedName.input';
 
 @InputType()
 export class CreateChapterInput {
@@ -30,6 +30,6 @@ export class CreateChapterInput {
   @Field(() => [Number])
   pages: number[];
 
-  @Field(() => [TranslatedName])
-  translatedName: TranslatedName[];
+  @Field(() => [CreateTranslatedNameInput])
+  translatedName: CreateTranslatedNameInput[];
 }

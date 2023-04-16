@@ -1,7 +1,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 
 @InputType()
-export class TranslatedName {
+export class CreateTranslatedNameInput {
   @Field(() => String)
   isoCode: string;
 
