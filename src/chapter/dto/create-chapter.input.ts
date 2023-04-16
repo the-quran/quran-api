@@ -1,4 +1,5 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
+import { TranslatedName } from '../entities/translatedName.entity';
 
 @InputType()
 export class CreateChapterInput {
@@ -23,6 +24,12 @@ export class CreateChapterInput {
   @Field(() => String)
   nameArabic: string;
 
-  @Field(() => Int)
+  @Field(() => Number)
   versesCount: number;
+
+  @Field(() => [Number])
+  pages: number[];
+
+  @Field(() => [TranslatedName])
+  translatedName: TranslatedName[];
 }
