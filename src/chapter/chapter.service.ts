@@ -19,18 +19,18 @@ export class ChapterService {
   }
 
   async findOne(id: number): Promise<Chapter> {
-    return await this.chapterModel.findOne({ _id: id }).exec();
+    return await this.chapterModel.findOne({ id }).exec();
   }
 
   async update(id: number, updateChapterInput: UpdateChapterInput) {
-    const filter = { _id: id };
+    const filter = { id };
     const update = updateChapterInput;
 
     return await this.chapterModel.findOneAndUpdate(filter, update).exec();
   }
 
   async remove(id: number) {
-    const filter = { _id: id };
+    const filter = { id };
     return await this.chapterModel.findOneAndRemove(filter).exec();
   }
 }

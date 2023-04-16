@@ -15,7 +15,7 @@ export class ChapterResolver {
     return this.chapterService.create(createChapterInput);
   }
 
-  @Query(() => [Chapter], { name: 'chapter' })
+  @Query(() => [Chapter], { name: 'chapters' })
   findAll() {
     return this.chapterService.findAll();
   }
