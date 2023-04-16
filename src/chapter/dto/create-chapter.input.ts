@@ -1,5 +1,5 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
-import { TranslatedName } from '../entities/translatedName.entity';
+import { TranslatedName } from './create-translatedName.input';
 
 @InputType()
 export class CreateChapterInput {
