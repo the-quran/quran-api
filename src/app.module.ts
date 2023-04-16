@@ -15,13 +15,14 @@ import { TranslationInfoModule } from './translation-info/translation-info.modul
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
-      typePaths: ['./**/*.graphql'],
-      definitions: {
-        path: join(process.cwd(), 'src/types/graphql.ts'),
-        outputAs: 'class',
-      },
+      // typePaths: ['./**/*.graphql'],
+      // definitions: {
+      //   path: join(process.cwd(), 'src/types/graphql.ts'),
+      //   outputAs: 'class',
+      // },
     }),
     ConfigModule.forRoot({
       envFilePath: '.env',
