@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { TranslatedName } from './translatedName.entity';
 
 @ObjectType()
 export class Chapter {
@@ -23,6 +24,12 @@ export class Chapter {
   @Field(() => String)
   nameArabic: string;
 
-  @Field(() => Int)
+  @Field(() => Number)
   versesCount: number;
+
+  @Field(() => [Number])
+  pages: number[];
+
+  @Field(() => [TranslatedName])
+  translatedName: TranslatedName[];
 }
