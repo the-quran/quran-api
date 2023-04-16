@@ -6,21 +6,21 @@ export type ChapterDocument = HydratedDocument<Chapter>;
 @Schema()
 export class Chapter {
   @Prop()
-  id: number;
+  _id: number;
   @Prop()
-  revelation_place: string;
+  revelationPlace: string;
   @Prop()
-  revelation_order: number;
+  revelationOrder: number;
   @Prop()
-  bismillah_pre: boolean;
+  bismillahPre: boolean;
   @Prop()
-  name_simple: string;
+  nameSimple: string;
   @Prop()
-  name_complex: string;
+  nameComplex: string;
   @Prop()
-  name_arabic: string;
+  nameArabic: string;
   @Prop()
-  verses_count: number;
+  versesCount: number;
 }
 
 export const ChapterSchema = SchemaFactory.createForClass(Chapter);
