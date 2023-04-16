@@ -18,7 +18,7 @@ export class TranslationInfoResolver {
     return this.translationInfoService.create(createTranslationInfoInput);
   }
 
-  @Query(() => [TranslationInfo], { name: 'translationInfo' })
+  @Query(() => [TranslationInfo], { name: 'translationInfos' })
   findAll() {
     return this.translationInfoService.findAll();
   }
