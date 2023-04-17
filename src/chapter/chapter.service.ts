@@ -11,7 +11,10 @@ export class ChapterService {
     @InjectModel(Chapter.name) private readonly chapterModel: Model<Chapter>,
   ) {}
   async create(createChapterInput: CreateChapterInput): Promise<Chapter> {
-    return await this.chapterModel.create(createChapterInput);
+    return await this.chapterModel.create({
+      ...createChapterInput,
+      _id: createChapterInput.id,
+    });
   }
 
   async findAll(): Promise<Chapter[]> {
@@ -19,18 +22,18 @@ export class ChapterService {
   }
 
   async findOne(id: number): Promise<Chapter> {
-    return await this.chapterModel.findOne({ id }).exec();
+    return await this.chapterModel.findOne({ _id: id }).exec();
   }
 
   async update(id: number, updateChapterInput: UpdateChapterInput) {
-    const filter = { id };
+    const filter = { _id: id };
     const update = updateChapterInput;
 
     return await this.chapterModel.findOneAndUpdate(filter, update).exec();
   }
 
   async remove(id: number) {
-    const filter = { id };
+    const filter = { _id: id };
     return await this.chapterModel.findOneAndRemove(filter).exec();
   }
 }
