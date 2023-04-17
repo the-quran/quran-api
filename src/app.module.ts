@@ -30,7 +30,7 @@ import { TranslationInfoModule } from './translation-info/translation-info.modul
     }),
     MongooseModule.forRoot(process.env.MONGO_DB_URL),
     ChapterModule,
-    VerseModule,
+    // VerseModule,
     TranslationInfoModule,
   ],
   controllers: [AppController],

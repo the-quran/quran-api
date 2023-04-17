@@ -1,7 +1,35 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
+import { CreateTranslatedNameInput } from './create-translatedName.input';
 
 @InputType()
 export class CreateChapterInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field(() => Int)
+  id: number;
+
+  @Field(() => String)
+  revelationPlace: string;
+
+  @Field(() => Int)
+  revelationOrder: number;
+
+  @Field(() => Boolean)
+  bismillahPre: boolean;
+
+  @Field(() => String)
+  nameSimple: string;
+
+  @Field(() => String)
+  nameComplex: string;
+
+  @Field(() => String)
+  nameArabic: string;
+
+  @Field(() => Number)
+  versesCount: number;
+
+  @Field(() => [Number])
+  pages: number[];
+
+  @Field(() => [CreateTranslatedNameInput])
+  translatedName: CreateTranslatedNameInput[];
 }

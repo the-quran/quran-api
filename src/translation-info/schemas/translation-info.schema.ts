@@ -1,28 +1,33 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, SchemaTypes } from 'mongoose';
 
 export type TranslationInfoDocument = HydratedDocument<TranslationInfo>;
 
 @Schema()
 export class Author {
-  @Prop()
-  _id: number;
-  @Prop()
+  @Prop({ required: true, index: true, unique: true, type: SchemaTypes.Number })
+  id: number;
+  @Prop({ type: SchemaTypes.String })
   name: string;
 }
 
 @Schema()
 export class TranslationInfo {
-  @Prop()
-  _id: number;
-  @Prop()
+  @Prop({ required: true, index: true, unique: true, type: SchemaTypes.Number })
+  id: number;
+
+  @Prop({ type: SchemaTypes.String })
   name: string;
-  @Prop()
-  iso_code: string;
-  @Prop()
-  native_name: string;
-  @Prop()
+
+  @Prop({ type: SchemaTypes.String })
+  isoCode: string;
+
+  @Prop({ type: SchemaTypes.String })
+  nativeName: string;
+
+  @Prop({ type: SchemaTypes.String })
   direction: string;
+
   @Prop()
   authors: Author[];
 }
