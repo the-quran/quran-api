@@ -17,6 +17,9 @@ export class TranslationInfoService {
     return await this.translationInfoModel.create({
       ...createTranslationInfoInput,
       _id: createTranslationInfoInput.id,
+      authors: createTranslationInfoInput.authors.map((v) => {
+        _id: v.id, v.name;
+      }),
     });
   }
 
@@ -33,7 +36,12 @@ export class TranslationInfoService {
     updateTranslationInfoInput: UpdateTranslationInfoInput,
   ) {
     const filter = { _id: id };
-    const update = updateTranslationInfoInput;
+    const update = {
+      ...updateTranslationInfoInput,
+      authors: updateTranslationInfoInput.authors.map((v) => {
+        _id: v.id, v.name;
+      }),
+    };
 
     return await this.translationInfoModel
       .findOneAndUpdate(filter, update)
