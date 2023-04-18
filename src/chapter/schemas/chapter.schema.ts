@@ -5,8 +5,8 @@ export type ChapterDocument = HydratedDocument<Chapter>;
 
 @Schema()
 export class Chapter {
-  @Prop({ required: true, index: true, unique: true, type: SchemaTypes.Number })
-  id: number;
+  @Prop({ type: SchemaTypes.Number })
+  _id: number;
   @Prop({ type: SchemaTypes.String })
   revelationPlace: string;
   @Prop({ type: SchemaTypes.Number })

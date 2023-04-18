@@ -5,16 +5,16 @@ export type TranslationInfoDocument = HydratedDocument<TranslationInfo>;
 
 @Schema()
 export class Author {
-  @Prop({ required: true, index: true, unique: true, type: SchemaTypes.Number })
-  id: number;
+  @Prop({ type: SchemaTypes.Number })
+  _id: number;
   @Prop({ type: SchemaTypes.String })
   name: string;
 }
 
 @Schema()
 export class TranslationInfo {
-  @Prop({ required: true, index: true, unique: true, type: SchemaTypes.Number })
-  id: number;
+  @Prop({ type: SchemaTypes.Number })
+  _id: number;
 
   @Prop({ type: SchemaTypes.String })
   name: string;

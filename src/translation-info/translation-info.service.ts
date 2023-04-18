@@ -14,7 +14,13 @@ export class TranslationInfoService {
   async create(
     createTranslationInfoInput: CreateTranslationInfoInput,
   ): Promise<TranslationInfo> {
-    return await this.translationInfoModel.create(createTranslationInfoInput);
+    return await this.translationInfoModel.create({
+      ...createTranslationInfoInput,
+      _id: createTranslationInfoInput.id,
+      authors: createTranslationInfoInput.authors.map((v) => {
+        _id: v.id, v.name;
+      }),
+    });
   }
 
   async findAll(): Promise<TranslationInfo[]> {
@@ -22,15 +28,20 @@ export class TranslationInfoService {
   }
 
   async findOne(id: number): Promise<TranslationInfo> {
-    return await this.translationInfoModel.findOne({ id }).exec();
+    return await this.translationInfoModel.findOne({ _id: id }).exec();
   }
 
   async update(
     id: number,
     updateTranslationInfoInput: UpdateTranslationInfoInput,
   ) {
-    const filter = { id };
-    const update = updateTranslationInfoInput;
+    const filter = { _id: id };
+    const update = {
+      ...updateTranslationInfoInput,
+      authors: updateTranslationInfoInput.authors.map((v) => {
+        _id: v.id, v.name;
+      }),
+    };
 
     return await this.translationInfoModel
       .findOneAndUpdate(filter, update)
@@ -38,7 +49,7 @@ export class TranslationInfoService {
   }
 
   async remove(id: number) {
-    const filter = { id };
+    const filter = { _id: id };
     return await this.translationInfoModel.findOneAndRemove(filter).exec();
   }
 }
