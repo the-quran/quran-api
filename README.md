@@ -36,3 +36,8 @@ Continuous integration(CI), continuous delivery/deployment(CD) are DevOps practi
       pnpm i @nestjs/mongoose mongoose
     ```
 
+  - [Installing Automapper](https://automapperts.netlify.app/docs/nestjs):
+  ```bash
+  pnpm add @automapper/core @automapper/classes @automapper/nestjs @automapper/types
+  ```    
+
