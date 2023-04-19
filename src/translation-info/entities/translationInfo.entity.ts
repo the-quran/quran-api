@@ -18,6 +18,6 @@ export class TranslationInfo {
   @Field(() => String)
   direction: string;
 
-  @Field(() => Author)
+  @Field(() => [Author])
   authors: Author[];
 }

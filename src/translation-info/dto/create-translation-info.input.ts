@@ -18,6 +18,6 @@ export class CreateTranslationInfoInput {
   @Field(() => String)
   direction: string;
 
-  @Field(() => CreateAuthorInput)
+  @Field(() => [CreateAuthorInput])
   authors: CreateAuthorInput[];
 }
