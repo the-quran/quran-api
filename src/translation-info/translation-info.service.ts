@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateTranslationInfoInput } from './dto/create-translation-info.input';
 import { UpdateTranslationInfoInput } from './dto/update-translation-info.input';
-import { TranslationInfo } from './schemas/translation-info.schema';
+import { Author, TranslationInfo } from './schemas/translation-info.schema';
 
 @Injectable()
 export class TranslationInfoService {
@@ -14,13 +14,25 @@ export class TranslationInfoService {
   async create(
     createTranslationInfoInput: CreateTranslationInfoInput,
   ): Promise<TranslationInfo> {
-    return await this.translationInfoModel.create({
+    const result = await this.translationInfoModel.create({
       ...createTranslationInfoInput,
       _id: createTranslationInfoInput.id,
-      authors: createTranslationInfoInput.authors.map((v) => {
-        _id: v.id, v.name;
-      }),
+      authors: createTranslationInfoInput.authors.map((v) => ({
+        _id: v.id,
+        name: v.name,
+      })),
     });
+    return {
+      ...result,
+      id: result._id,
+      authors: result.authors.map(
+        (v) =>
+          ({
+            id: v._id,
+            name: v.name,
+          } as Author),
+      ),
+    };
   }
 
   async findAll(): Promise<TranslationInfo[]> {
@@ -38,9 +50,10 @@ export class TranslationInfoService {
     const filter = { _id: id };
     const update = {
       ...updateTranslationInfoInput,
-      authors: updateTranslationInfoInput.authors.map((v) => {
-        _id: v.id, v.name;
-      }),
+      authors: updateTranslationInfoInput.authors.map((v) => ({
+        _id: v.id,
+        name: v.name,
+      })),
     };
 
     return await this.translationInfoModel

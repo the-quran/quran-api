@@ -10,9 +10,14 @@ import { join } from 'path';
 import { ChapterModule } from './chapter/chapter.module';
 import { VerseModule } from './verse/verse.module';
 import { TranslationInfoModule } from './translation-info/translation-info.module';
+import { AutomapperModule } from '@automapper/nestjs';
+import { classes } from '@automapper/classes';
 
 @Module({
   imports: [
+    AutomapperModule.forRoot({
+      strategyInitializer: classes(),
+    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),

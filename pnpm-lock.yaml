@@ -4,6 +4,18 @@ dependencies:
   '@apollo/server':
     specifier: ^4.6.0
     version: 4.6.0(graphql@16.6.0)
+  '@automapper/classes':
+    specifier: ^8.7.7
+    version: 8.7.7(@automapper/core@8.7.7)(reflect-metadata@0.1.13)
+  '@automapper/core':
+    specifier: ^8.7.7
+    version: 8.7.7
+  '@automapper/nestjs':
+    specifier: ^8.7.7
+    version: 8.7.7(@automapper/core@8.7.7)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)
+  '@automapper/types':
+    specifier: ^6.3.1
+    version: 6.3.1
   '@nestjs/apollo':
     specifier: ^11.0.4
     version: 11.0.4(@apollo/server@4.6.0)(@apollo/subgraph@2.4.1)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(@nestjs/graphql@11.0.4)(graphql@16.6.0)
@@ -379,6 +391,40 @@ packages:
     resolution: {integrity: sha512-xCcXpoz52rI4ksJSdOCxeOCn2DLocxwHf9dVT/Q90Pte1LX+LY+91SFtJF3KXVHH8kEin+g1KKCQPKBjZJfWNA==}
     dependencies:
       xss: 1.0.14
+    dev: false
+
+  /@automapper/classes@8.7.7(@automapper/core@8.7.7)(reflect-metadata@0.1.13):
+    resolution: {integrity: sha512-FSbvt6QE8XnhKKQZA3kpKLuLrr9x1iW+lNYTrawVLjxQ05zsCGccLxe7moMNrg1wFAVAouQKupFgCGQ7XRjmJw==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@automapper/core': 8.7.7
+      reflect-metadata: ~0.1.13
+    dependencies:
+      '@automapper/core': 8.7.7
+      reflect-metadata: 0.1.13
+    dev: false
+
+  /@automapper/core@8.7.7:
+    resolution: {integrity: sha512-YfpDJ/xqwUuC0S+BLNk81ZJfeL7CmjirUX/Gk9eQyx146DKvneBZgeZ9v5rDB51Ti14jTxVHis+5JuT7W/q0TA==}
+    engines: {node: '>=14.0.0'}
+    dev: false
+
+  /@automapper/nestjs@8.7.7(@automapper/core@8.7.7)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0):
+    resolution: {integrity: sha512-9/uYY2cmN7SJjr2QxnfyXsteHrn/RHD+Dg0VMBflzK/e8Bh/KWyOve7+kaFixlUoyHe44aXs2LVaCslqt8wnhQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@automapper/core': 8.7.7
+      '@nestjs/common': ^7.0.0 || ^8.0.0 || ^9.0.0
+      '@nestjs/core': ^7.0.0 || ^8.0.0  || ^9.0.0
+    dependencies:
+      '@automapper/core': 8.7.7
+      '@nestjs/common': 9.4.0(reflect-metadata@0.1.13)(rxjs@7.8.0)
+      '@nestjs/core': 9.4.0(@nestjs/common@9.4.0)(@nestjs/platform-express@9.4.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
+    dev: false
+
+  /@automapper/types@6.3.1:
+    resolution: {integrity: sha512-f0Y/Q4dVfKH6SQyzS5bPk+hZ4pSxzVNAOPEHdEAUe3gAc6ou43DCBYERuOaVSZ3zbWJbVt1KgWVNLP1dj9OIeg==}
+    engines: {node: '>=10.0.0'}
     dev: false
 
   /@babel/code-frame@7.21.4:
