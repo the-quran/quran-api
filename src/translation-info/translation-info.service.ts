@@ -22,17 +22,18 @@ export class TranslationInfoService {
         name: v.name,
       })),
     });
-    return {
-      ...result,
-      id: result._id,
-      authors: result.authors.map(
-        (v) =>
-          ({
-            id: v._id,
-            name: v.name,
-          } as Author),
-      ),
-    };
+    // return {
+    //   ...result,
+    //   id: result._id,
+    //   authors: result.authors.map(
+    //     (v) =>
+    //       ({
+    //         id: v._id,
+    //         name: v.name,
+    //       } as Author),
+    //   ),
+    // };
+    return null;
   }
 
   async findAll(): Promise<TranslationInfo[]> {

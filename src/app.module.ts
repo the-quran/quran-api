@@ -8,8 +8,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { join } from 'path';
 import { ChapterModule } from './chapter/chapter.module';
-import { VerseModule } from './verse/verse.module';
-import { TranslationInfoModule } from './translation-info/translation-info.module';
+// import { TranslationInfoModule } from './translation-info/translation-info.module';
 import { AutomapperModule } from '@automapper/nestjs';
 import { classes } from '@automapper/classes';
 
@@ -36,7 +35,7 @@ import { classes } from '@automapper/classes';
     MongooseModule.forRoot(process.env.MONGO_DB_URL),
     ChapterModule,
     // VerseModule,
-    TranslationInfoModule,
+    // TranslationInfoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
