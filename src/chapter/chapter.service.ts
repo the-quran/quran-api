@@ -36,8 +36,12 @@ export class ChapterService {
     );
   }
 
-  async findOne(id: number): Promise<Chapter> {
-    return await this.chapterModel.findOne({ _id: id }).exec();
+  async findOne(id: number): Promise<chapterEntity> {
+    return this.classMapper.mapAsync(
+      await this.chapterModel.findOne({ _id: id }).exec(),
+      Chapter,
+      chapterEntity,
+    );
   }
 
   async update(id: number, updateChapterInput: UpdateChapterInput) {
