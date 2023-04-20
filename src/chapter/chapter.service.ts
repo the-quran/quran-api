@@ -58,8 +58,12 @@ export class ChapterService {
     );
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<chapterEntity> {
     const filter = { _id: id };
-    return await this.chapterModel.findOneAndRemove(filter).exec();
+    return this.classMapper.mapAsync(
+      await this.chapterModel.findOneAndRemove(filter).exec(),
+      Chapter,
+      chapterEntity,
+    );
   }
 }
