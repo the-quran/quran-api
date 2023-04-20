@@ -8,24 +8,24 @@ import { UpdateChapterInput } from './dto/update-chapter.input';
 export class ChapterResolver {
   constructor(private readonly chapterService: ChapterService) {}
 
-  @Mutation(() => Chapter)
+  @Mutation(() => Chapter, { nullable: true })
   createChapter(
     @Args('createChapterInput') createChapterInput: CreateChapterInput,
   ) {
     return this.chapterService.create(createChapterInput);
   }
 
-  @Query(() => [Chapter], { name: 'chapters' })
+  @Query(() => [Chapter], { name: 'chapters', nullable: true })
   findAll() {
     return this.chapterService.findAll();
   }
 
-  @Query(() => Chapter, { name: 'chapter' })
+  @Query(() => Chapter, { name: 'chapter', nullable: true })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.chapterService.findOne(id);
   }
 
-  @Mutation(() => Chapter)
+  @Mutation(() => Chapter, { nullable: true })
   updateChapter(
     @Args('updateChapterInput') updateChapterInput: UpdateChapterInput,
   ) {
@@ -35,7 +35,7 @@ export class ChapterResolver {
     );
   }
 
-  @Mutation(() => Chapter)
+  @Mutation(() => Chapter, { nullable: true })
   removeChapter(@Args('id', { type: () => Int }) id: number) {
     return this.chapterService.remove(id);
   }

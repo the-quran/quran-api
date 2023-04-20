@@ -14,6 +14,7 @@ import { Chapter, TranslatedName } from '../schemas/chapter.schema';
 import { CreateChapterInput } from '../dto/create-chapter.input';
 import { CreateTranslatedNameInput } from '../dto/create-translatedName.input';
 import { channel } from 'diagnostics_channel';
+import { UpdateChapterInput } from '../dto/update-chapter.input';
 
 @Injectable()
 export class ChapterProfile extends AutomapperProfile {
@@ -32,8 +33,26 @@ export class ChapterProfile extends AutomapperProfile {
           mapFrom((s) => s.id),
         ),
       );
+      createMap(
+        mapper,
+        UpdateChapterInput,
+        Chapter,
+        forMember(
+          (d) => d._id,
+          mapFrom((s) => s.id),
+        ),
+      );
       createMap(mapper, CreateTranslatedNameInput, TranslatedName);
 
+      createMap(
+        mapper,
+        Chapter,
+        chapterEntity,
+        forMember(
+          (d) => d.id,
+          mapFrom((s) => s._id),
+        ),
+      );
       createMap(
         mapper,
         Chapter,

@@ -14,7 +14,9 @@ export class ChapterService {
     @InjectModel(Chapter.name) private readonly chapterModel: Model<Chapter>,
     @InjectMapper() private readonly classMapper: Mapper,
   ) {}
-  async create(createChapterInput: CreateChapterInput): Promise<chapterEntity> {
+  async create(
+    createChapterInput: CreateChapterInput,
+  ): Promise<chapterEntity | null> {
     const chapter = this.classMapper.map(
       createChapterInput,
       CreateChapterInput,
@@ -28,23 +30,46 @@ export class ChapterService {
     );
   }
 
-  async findAll(): Promise<Chapter[]> {
-    return await this.chapterModel.find().exec();
+  async findAll(): Promise<chapterEntity[] | null> {
+    return this.classMapper.mapArrayAsync(
+      await this.chapterModel.find().exec(),
+      Chapter,
+      chapterEntity,
+    );
   }
 
-  async findOne(id: number): Promise<Chapter> {
-    return await this.chapterModel.findOne({ _id: id }).exec();
+  async findOne(id: number): Promise<chapterEntity | null> {
+    return this.classMapper.mapAsync(
+      await this.chapterModel.findOne({ _id: id }).exec(),
+      Chapter,
+      chapterEntity,
+    );
   }
 
-  async update(id: number, updateChapterInput: UpdateChapterInput) {
+  async update(
+    id: number,
+    updateChapterInput: UpdateChapterInput,
+  ): Promise<chapterEntity | null> {
     const filter = { _id: id };
-    const update = updateChapterInput;
+    const update = this.classMapper.map(
+      updateChapterInput,
+      UpdateChapterInput,
+      Chapter,
+    );
 
-    return await this.chapterModel.findOneAndUpdate(filter, update).exec();
+    return this.classMapper.mapAsync(
+      await this.chapterModel.findOneAndUpdate(filter, update).exec(),
+      Chapter,
+      chapterEntity,
+    );
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<chapterEntity | null> {
     const filter = { _id: id };
-    return await this.chapterModel.findOneAndRemove(filter).exec();
+    return this.classMapper.mapAsync(
+      await this.chapterModel.findOneAndRemove(filter).exec(),
+      Chapter,
+      chapterEntity,
+    );
   }
 }
