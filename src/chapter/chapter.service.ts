@@ -28,8 +28,12 @@ export class ChapterService {
     );
   }
 
-  async findAll(): Promise<Chapter[]> {
-    return await this.chapterModel.find().exec();
+  async findAll(): Promise<chapterEntity[]> {
+    return this.classMapper.mapArrayAsync(
+      await this.chapterModel.find().exec(),
+      Chapter,
+      chapterEntity,
+    );
   }
 
   async findOne(id: number): Promise<Chapter> {
