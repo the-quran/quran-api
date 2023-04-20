@@ -44,11 +44,18 @@ export class ChapterService {
     );
   }
 
-  async update(id: number, updateChapterInput: UpdateChapterInput) {
+  async update(
+    id: number,
+    updateChapterInput: UpdateChapterInput,
+  ): Promise<chapterEntity> {
     const filter = { _id: id };
     const update = updateChapterInput;
 
-    return await this.chapterModel.findOneAndUpdate(filter, update).exec();
+    return this.classMapper.mapAsync(
+      await this.chapterModel.findOneAndUpdate(filter, update).exec(),
+      Chapter,
+      chapterEntity,
+    );
   }
 
   async remove(id: number) {
