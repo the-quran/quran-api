@@ -14,7 +14,9 @@ export class ChapterService {
     @InjectModel(Chapter.name) private readonly chapterModel: Model<Chapter>,
     @InjectMapper() private readonly classMapper: Mapper,
   ) {}
-  async create(createChapterInput: CreateChapterInput): Promise<chapterEntity> {
+  async create(
+    createChapterInput: CreateChapterInput,
+  ): Promise<chapterEntity | null> {
     const chapter = this.classMapper.map(
       createChapterInput,
       CreateChapterInput,
@@ -28,7 +30,7 @@ export class ChapterService {
     );
   }
 
-  async findAll(): Promise<chapterEntity[]> {
+  async findAll(): Promise<chapterEntity[] | null> {
     return this.classMapper.mapArrayAsync(
       await this.chapterModel.find().exec(),
       Chapter,
@@ -36,7 +38,7 @@ export class ChapterService {
     );
   }
 
-  async findOne(id: number): Promise<chapterEntity> {
+  async findOne(id: number): Promise<chapterEntity | null> {
     return this.classMapper.mapAsync(
       await this.chapterModel.findOne({ _id: id }).exec(),
       Chapter,
@@ -47,9 +49,13 @@ export class ChapterService {
   async update(
     id: number,
     updateChapterInput: UpdateChapterInput,
-  ): Promise<chapterEntity> {
+  ): Promise<chapterEntity | null> {
     const filter = { _id: id };
-    const update = updateChapterInput;
+    const update = this.classMapper.map(
+      updateChapterInput,
+      UpdateChapterInput,
+      Chapter,
+    );
 
     return this.classMapper.mapAsync(
       await this.chapterModel.findOneAndUpdate(filter, update).exec(),
@@ -58,7 +64,7 @@ export class ChapterService {
     );
   }
 
-  async remove(id: number): Promise<chapterEntity> {
+  async remove(id: number): Promise<chapterEntity | null> {
     const filter = { _id: id };
     return this.classMapper.mapAsync(
       await this.chapterModel.findOneAndRemove(filter).exec(),
