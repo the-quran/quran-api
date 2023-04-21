@@ -1,22 +1,14 @@
 import { AutomapperProfile, InjectMapper } from '@automapper/nestjs';
-import {
-  createMap,
-  extend,
-  forMember,
-  mapFrom,
-  Mapper,
-  MappingConfiguration,
-} from '@automapper/core';
+import { createMap, forMember, mapFrom, Mapper } from '@automapper/core';
 import { Injectable } from '@nestjs/common';
-import { Chapter as ChapterEntity } from '../entities/chapter.entity';
-import { TranslatedName as TranslatedNameEntity } from '../entities/translated-name.entity';
-import { Chapter, TranslatedName } from '../schemas/chapter.schema';
-import { CreateChapterInput } from '../dto/create-chapter.input';
-import { CreateTranslatedNameInput } from '../dto/create-translatedName.input';
-import { UpdateChapterInput } from '../dto/update-chapter.input';
+import { TranslationInfo as TranslationInfoEntity } from '../entities/translation-info.entity';
+import { Author as AuthorEntity } from '../entities/author.entity';
+import { TranslationInfo } from '../schemas/translation-info.schema';
+import { CreateTranslationInfoInput } from '../dto/create-translation-info.input';
+import { UpdateTranslationInfoInput } from '../dto/update-translation-info.input';
 
 @Injectable()
-export class ChapterProfile extends AutomapperProfile {
+export class TranslationInfoProfile extends AutomapperProfile {
   constructor(@InjectMapper() mapper: Mapper) {
     super(mapper);
   }
@@ -25,8 +17,8 @@ export class ChapterProfile extends AutomapperProfile {
     return (mapper) => {
       createMap(
         mapper,
-        CreateChapterInput,
-        Chapter,
+        CreateTranslationInfoInput,
+        TranslationInfo,
         forMember(
           (d) => d._id,
           mapFrom((s) => s.id),
@@ -34,8 +26,8 @@ export class ChapterProfile extends AutomapperProfile {
       );
       createMap(
         mapper,
-        UpdateChapterInput,
-        Chapter,
+        UpdateTranslationInfoInput,
+        TranslationInfo,
         forMember(
           (d) => d._id,
           mapFrom((s) => s.id),
@@ -45,8 +37,8 @@ export class ChapterProfile extends AutomapperProfile {
 
       createMap(
         mapper,
-        Chapter,
-        ChapterEntity,
+        TranslationInfo,
+        translationInfoEntity,
         forMember(
           (d) => d.id,
           mapFrom((s) => s._id),
@@ -54,8 +46,8 @@ export class ChapterProfile extends AutomapperProfile {
       );
       createMap(
         mapper,
-        Chapter,
-        ChapterEntity,
+        TranslationInfo,
+        translationInfoEntity,
         forMember(
           (d) => d.id,
           mapFrom((s) => s._id),
