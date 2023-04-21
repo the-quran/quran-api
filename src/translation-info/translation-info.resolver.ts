@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { TranslationInfoService } from './translation-info.service';
-import { TranslationInfo } from './entities/translationInfo.entity';
+import { TranslationInfo } from './entities/translation-info.entity';
 import { CreateTranslationInfoInput } from './dto/create-translation-info.input';
 import { UpdateTranslationInfoInput } from './dto/update-translation-info.input';
 
