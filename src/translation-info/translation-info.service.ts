@@ -1,69 +1,76 @@
+import { Mapper } from '@automapper/core';
+import { InjectMapper } from '@automapper/nestjs';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateTranslationInfoInput } from './dto/create-translation-info.input';
 import { UpdateTranslationInfoInput } from './dto/update-translation-info.input';
 import { Author, TranslationInfo } from './schemas/translation-info.schema';
+import { TranslationInfo as TranslationInfoEntity } from './entities/translation-info.entity';
 
 @Injectable()
 export class TranslationInfoService {
   constructor(
     @InjectModel(TranslationInfo.name)
     private readonly translationInfoModel: Model<TranslationInfo>,
+    @InjectMapper() private readonly classMapper: Mapper,
   ) {}
   async create(
     createTranslationInfoInput: CreateTranslationInfoInput,
-  ): Promise<TranslationInfo> {
-    const result = await this.translationInfoModel.create({
-      ...createTranslationInfoInput,
-      _id: createTranslationInfoInput.id,
-      authors: createTranslationInfoInput.authors.map((v) => ({
-        _id: v.id,
-        name: v.name,
-      })),
-    });
-    // return {
-    //   ...result,
-    //   id: result._id,
-    //   authors: result.authors.map(
-    //     (v) =>
-    //       ({
-    //         id: v._id,
-    //         name: v.name,
-    //       } as Author),
-    //   ),
-    // };
-    return null;
+  ): Promise<TranslationInfoEntity | null> {
+    const translationInfo = this.classMapper.map(
+      createTranslationInfoInput,
+      CreateTranslationInfoInput,
+      TranslationInfo,
+    );
+
+    return this.classMapper.mapAsync(
+      await this.translationInfoModel.create(translationInfo),
+      TranslationInfo,
+      TranslationInfoEntity,
+    );
   }
 
-  async findAll(): Promise<TranslationInfo[]> {
-    return await this.translationInfoModel.find().exec();
+  async findAll(): Promise<TranslationInfoEntity[] | null> {
+    return this.classMapper.mapArrayAsync(
+      await this.translationInfoModel.find().exec(),
+      TranslationInfo,
+      TranslationInfoEntity,
+    );
   }
 
-  async findOne(id: number): Promise<TranslationInfo> {
-    return await this.translationInfoModel.findOne({ _id: id }).exec();
+  async findOne(id: number): Promise<TranslationInfoEntity | null> {
+    return this.classMapper.mapAsync(
+      await this.translationInfoModel.findOne({ _id: id }).exec(),
+      TranslationInfo,
+      TranslationInfoEntity,
+    );
   }
 
   async update(
     id: number,
     updateTranslationInfoInput: UpdateTranslationInfoInput,
-  ) {
+  ): Promise<TranslationInfoEntity | null> {
     const filter = { _id: id };
-    const update = {
-      ...updateTranslationInfoInput,
-      authors: updateTranslationInfoInput.authors.map((v) => ({
-        _id: v.id,
-        name: v.name,
-      })),
-    };
+    const update = this.classMapper.map(
+      updateTranslationInfoInput,
+      UpdateTranslationInfoInput,
+      TranslationInfo,
+    );
 
-    return await this.translationInfoModel
-      .findOneAndUpdate(filter, update)
-      .exec();
+    return this.classMapper.mapAsync(
+      await this.translationInfoModel.findOneAndUpdate(filter, update).exec(),
+      TranslationInfo,
+      TranslationInfoEntity,
+    );
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<TranslationInfoEntity | null> {
     const filter = { _id: id };
-    return await this.translationInfoModel.findOneAndRemove(filter).exec();
+    return this.classMapper.mapAsync(
+      await this.translationInfoModel.findOneAndRemove(filter).exec(),
+      TranslationInfo,
+      TranslationInfoEntity,
+    );
   }
 }
