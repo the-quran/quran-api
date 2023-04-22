@@ -6,6 +6,7 @@ import {
   TranslationInfo,
   TranslationInfoSchema,
 } from './schemas/translation-info.schema';
+import { TranslationInfoProfile } from './profiles/translation-info-profile';
 
 @Module({
   imports: [
@@ -13,6 +14,10 @@ import {
       { name: TranslationInfo.name, schema: TranslationInfoSchema },
     ]),
   ],
-  providers: [TranslationInfoResolver, TranslationInfoService],
+  providers: [
+    TranslationInfoResolver,
+    TranslationInfoService,
+    TranslationInfoProfile,
+  ],
 })
 export class TranslationInfoModule {}

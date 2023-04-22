@@ -3,9 +3,10 @@ import { createMap, forMember, mapFrom, Mapper } from '@automapper/core';
 import { Injectable } from '@nestjs/common';
 import { TranslationInfo as TranslationInfoEntity } from '../entities/translation-info.entity';
 import { Author as AuthorEntity } from '../entities/author.entity';
-import { TranslationInfo } from '../schemas/translation-info.schema';
+import { Author, TranslationInfo } from '../schemas/translation-info.schema';
 import { CreateTranslationInfoInput } from '../dto/create-translation-info.input';
 import { UpdateTranslationInfoInput } from '../dto/update-translation-info.input';
+import { CreateAuthorInput } from '../dto/create-author.input';
 
 @Injectable()
 export class TranslationInfoProfile extends AutomapperProfile {
@@ -33,12 +34,12 @@ export class TranslationInfoProfile extends AutomapperProfile {
           mapFrom((s) => s.id),
         ),
       );
-      createMap(mapper, CreateTranslatedNameInput, TranslatedName);
+      createMap(mapper, CreateAuthorInput, Author);
 
       createMap(
         mapper,
         TranslationInfo,
-        translationInfoEntity,
+        TranslationInfoEntity,
         forMember(
           (d) => d.id,
           mapFrom((s) => s._id),
@@ -47,13 +48,13 @@ export class TranslationInfoProfile extends AutomapperProfile {
       createMap(
         mapper,
         TranslationInfo,
-        translationInfoEntity,
+        TranslationInfoEntity,
         forMember(
           (d) => d.id,
           mapFrom((s) => s._id),
         ),
       );
-      createMap(mapper, TranslatedName, TranslatedNameEntity);
+      createMap(mapper, Author, AuthorEntity);
     };
   }
   //   protected get mappingConfigurations(): MappingConfiguration[] {
