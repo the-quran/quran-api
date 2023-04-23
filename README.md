@@ -33,7 +33,7 @@ Continuous integration(CI), continuous delivery/deployment(CD) are DevOps practi
 - [Installing Skaffold](https://github.com/mehradi-github/microservices-ticketing#skaffold)
 - Installing Mongo:
     ```bash
-      pnpm i @nestjs/mongoose mongoose
+      pnpm add @nestjs/mongoose mongoose
     ```
 
   - [Installing Automapper](https://automapperts.netlify.app/docs/nestjs):
