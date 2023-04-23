@@ -5,7 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateTranslationInfoInput } from './dto/create-translation-info.input';
 import { UpdateTranslationInfoInput } from './dto/update-translation-info.input';
-import { Author, TranslationInfo } from './schemas/translation-info.schema';
+import { TranslationInfo } from './schemas/translation-info.schema';
 import { TranslationInfo as TranslationInfoEntity } from './entities/translation-info.entity';
 
 @Injectable()
