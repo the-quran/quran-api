@@ -1,19 +1,10 @@
 import { AutoMap } from '@automapper/classes';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaTypes } from 'mongoose';
+import { TranslatedName } from './translated-name.schema';
 
 export type ChapterDocument = HydratedDocument<Chapter>;
 
-@Schema()
-export class TranslatedName {
-  @AutoMap()
-  @Prop({ type: SchemaTypes.String })
-  isoCode: string;
-
-  @AutoMap()
-  @Prop({ type: SchemaTypes.String })
-  name: string;
-}
 @Schema()
 export class Chapter {
   @Prop({ type: SchemaTypes.Number })
