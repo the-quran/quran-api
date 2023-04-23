@@ -1,6 +1,6 @@
 import { AutoMap } from '@automapper/classes';
 import { InputType, Int, Field } from '@nestjs/graphql';
-import { CreateTranslatedNameInput } from './create-translatedName.input';
+import { CreateTranslatedNameInput } from './create-translated-name.input';
 
 @InputType()
 export class CreateChapterInput {
