@@ -52,15 +52,6 @@ export class ChapterProfile extends AutomapperProfile {
           mapFrom((s) => s._id),
         ),
       );
-      createMap(
-        mapper,
-        Chapter,
-        ChapterEntity,
-        forMember(
-          (d) => d.id,
-          mapFrom((s) => s._id),
-        ),
-      );
       createMap(mapper, TranslatedName, TranslatedNameEntity);
     };
   }

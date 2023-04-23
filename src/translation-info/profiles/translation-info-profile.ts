@@ -8,6 +8,7 @@ import { CreateTranslationInfoInput } from '../dto/create-translation-info.input
 import { UpdateTranslationInfoInput } from '../dto/update-translation-info.input';
 import { CreateAuthorInput } from '../dto/create-author.input';
 import { Author } from '../schemas/author.schema';
+import { UpdateAuthorInput } from '../dto/update-author.input';
 
 @Injectable()
 export class TranslationInfoProfile extends AutomapperProfile {
@@ -44,16 +45,16 @@ export class TranslationInfoProfile extends AutomapperProfile {
           mapFrom((s) => s.id),
         ),
       );
-
       createMap(
         mapper,
-        TranslationInfo,
-        TranslationInfoEntity,
+        UpdateAuthorInput,
+        Author,
         forMember(
-          (d) => d.id,
-          mapFrom((s) => s._id),
+          (d) => d._id,
+          mapFrom((s) => s.id),
         ),
       );
+
       createMap(
         mapper,
         TranslationInfo,
