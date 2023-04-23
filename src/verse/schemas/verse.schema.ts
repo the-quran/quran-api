@@ -1,15 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { Translation } from './translation.schema';
 
 export type VerseDocument = HydratedDocument<Verse>;
 
-@Schema()
-export class Translation {
-  @Prop()
-  _id: number;
-  @Prop()
-  text: string;
-}
 @Schema()
 export class Verse {
   @Prop()
